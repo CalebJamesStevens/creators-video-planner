@@ -1,0 +1,27 @@
+{
+  "name": "creators-video-planner",
+  "version": "1.0.0",
+  "description": "Planning tool for media creators",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app",
+    "dev": "nodemon app",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CalebJamesStevens/creators-video-planner.git"
+  },
+  "author": "Caleb Stevens",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CalebJamesStevens/creators-video-planner/issues"
+  },
+  "homepage": "https://github.com/CalebJamesStevens/creators-video-planner#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}

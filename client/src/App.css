@@ -1,0 +1,217 @@
+body {
+    background-color: rgb(31, 30, 30);
+    color: white;
+}
+
+.hidden {
+    display: none;
+}
+
+/*ICONS*/
+.icon {
+}
+
+/* BUTTONS */
+
+.clickable-1:hover {
+    cursor: pointer;
+}
+
+/*NAV MENU*/
+
+.navbar {
+    padding: 1rem;
+    background-color: maroon;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.desktop-nav-menu-container {
+    display: flex;
+    align-items: center;
+}
+
+.desktop-nav-menu-item {
+    margin-right: 1rem;
+}
+
+/* Authentication */
+
+.sing-in-page-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10rem;
+}
+
+.authentication-form {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+}
+
+.form-input {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+}
+
+.authentication-submit {
+    margin-top: 1rem;
+    border: none;
+    text-decoration: none;
+    background-color: maroon;
+    padding-block: 0.5rem;
+    color: white;
+}
+
+/*TOOL SECTION*/
+
+.tool-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    padding-block: 4rem;
+}
+
+.tool-content-container {
+    width: clamp(20rem, 50%, 900px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tool-heading {
+    align-self: center;
+}
+
+.tool-form-container {
+    width: clamp(20rem, 80%, 900px);
+}
+
+.form-input-container {
+    width: 100%;
+}
+
+.tool-form-input {
+    resize: vertical;
+    width: 100%;
+    height: 8rem;
+    font-size: 1.2rem;
+}
+
+/* TOOL NAVIGATION */
+.tool-navigator-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-block: 2rem;
+}
+
+.tool-nav-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 3rem;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: maroon 1rem solid;
+    padding: 1rem;
+    margin-inline: 1rem;
+    transition: 250ms;
+}
+
+.tool-nav-item:hover {
+    border-color: white;
+    border-width: 1.5rem;
+}
+
+.tool-nav-item > .icon {
+    width: 100%;
+    height: 100%;
+}
+
+/* TELEPROMPTER */
+
+.teleprompter-content-container {
+    height: 80vh;
+    width: 100%;
+    background-color: grey;
+    border-radius: 10px;
+    border: maroon solid 0.2rem;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: scroll;
+}
+.teleprompter-content {
+    width: 100%;
+    font-size: 1.2rem;
+    overflow-wrap: break-word;
+    margin-bottom: 1rem;
+}
+
+.tp-block-heading {
+    width: fit-content;
+    font-size: 1.4rem;
+    text-transform: capitalize;
+    border-bottom: 0.2rem black solid;
+}
+
+.autoscroll {
+}
+
+/*PROJECTS PAGE*/
+.projects-page {
+    padding-top: 8rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.project-cards-container {
+    display: grid;
+    grid-template-columns: repeat(4, 9rem);
+
+    gap: 3rem;
+}
+.project-header {
+    margin: 0;
+    padding: 0;
+    width: fit-content;
+    text-decoration: underline white;
+    grid-column-start: 1;
+    grid-column-end: 5;
+}
+
+.new-project-card {
+    width: 9rem;
+    height: 9rem;
+    border-radius: 10px;
+    border: 0.3rem white solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 100ms;
+}
+
+.new-project-card:hover {
+    width: 10rem;
+    height: 10rem;
+    cursor: pointer;
+}
+
+.new-project-icon {
+    color: white;
+    width: 20%;
+    height: 20%;
+    border: white 0.7rem solid;
+    padding: 1rem;
+    border-radius: 10px;
+    transition: 100ms;
+}

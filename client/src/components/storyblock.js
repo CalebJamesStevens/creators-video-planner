@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-function Script({ buildTeleprompterContent, visible }) {
+function Storyblock({ buildTeleprompterContent, visible }) {
     const [hookBody, setHookBody] = useState('');
     const [introBody, setIntroBody] = useState('');
     const [askBody, setAskBody] = useState('');
@@ -8,17 +8,9 @@ function Script({ buildTeleprompterContent, visible }) {
     const [bonusBody, setBonusBody] = useState('');
     const [ctaBody, setCtaBody] = useState('');
 
-    const handleSubmit = (e) => {
-        let content = {
-            hook: hookBody,
-            intro: introBody,
-            ask: askBody,
-            content: contentBody,
-            bonus: bonusBody,
-            cta: ctaBody,
-        };
-        buildTeleprompterContent(content);
-        e.preventDefault();
+    const handleSubmit = () => {
+        let content =
+            hookBody + introBody + askBody + contentBody + bonusBody + ctaBody;
     };
 
     const handleHookChange = (e) => {
@@ -45,12 +37,12 @@ function Script({ buildTeleprompterContent, visible }) {
         <>
             <section
                 aria-labelledby='tool-title'
-                className={`tool-content-container script-container`}
+                className='tool-content-container script-container'
             >
                 <h1 className='tool-heading' id='tool-title'>
-                    Create a script for your video
+                    Storyblock your video
                 </h1>
-                <form className='tool-form-container' onSubmit={handleSubmit}>
+                <form className='tool-form-container' onSubmit={handleSubmit()}>
                     <section
                         className='form-input-container'
                         aria-labelledby='hook-label'
@@ -124,4 +116,4 @@ function Script({ buildTeleprompterContent, visible }) {
     );
 }
 
-export default Script;
+export default Storyblock;

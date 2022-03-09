@@ -1,15 +1,15 @@
 function SignIn() {
-    const handleSubmit = (data) => {
-        const body = new FormData(data);
-        fetch('/api/users/sign-in', {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-        });
-    };
+    // const handleSubmit = (data) => {
+    //     const body = new FormData(data);
+    //     fetch('/api/users/sign-in', {
+    //         method: 'POST',
+    //         headers: {
+    //             Accept: 'application/json',
+    //             'Content-Type': 'application/json',
+    //         },
+    //         body: JSON.stringify(data),
+    //     });
+    // };
 
     return (
         <>

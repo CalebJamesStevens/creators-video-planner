@@ -7,7 +7,7 @@ function SignIn() {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(body),
+            body: JSON.stringify(data),
         });
     };
 
@@ -16,10 +16,8 @@ function SignIn() {
             <main className='sing-in-page-container'>
                 <h1 className='hidden'>Sign In Page</h1>
                 <form
-                    onSubmit={(e) => {
-                        e.preventDefault();
-                        handleSubmit(e.target);
-                    }}
+                    action='/api/users/sign-in'
+                    method='POST'
                     className='authentication-form'
                 >
                     <label

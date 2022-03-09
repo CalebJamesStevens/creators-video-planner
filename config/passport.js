@@ -5,6 +5,7 @@ const LocalStrategy = passportLocal.Strategy;
 
 function initialize(passport, getUserByEmail, getUserById) {
     const authenticateUser = async (email, password, done) => {
+        console.log('authenticating');
         const user = await getUserByEmail(email);
         if (user === undefined) {
             return done(null, false, {

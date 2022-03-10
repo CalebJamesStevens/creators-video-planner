@@ -13,12 +13,15 @@ function App() {
     const [session, setSession] = useState({ state: 'loading' });
     const [user, setUser] = useState();
 
-    useEffect(() => {
+    const authenticateUser = () => {
+        console.log('authenticating');
         console.log(session.state);
+
         if (session.state !== 'loading') return;
         fetch('/api/users/authenticate')
             .then((res) => res.json())
             .then((data) => {
+                console.log('setting user');
                 if (data.code === 101) {
                     setUser(data.user);
                     console.log(data);
@@ -26,6 +29,11 @@ function App() {
                 }
                 return setSession({ state: 'signedOut' });
             });
+    };
+
+    useEffect(() => {
+        console.log(session.state);
+        authenticateUser();
     }, []);
 
     if (!session.state) return;
@@ -46,13 +54,20 @@ function App() {
             <div className='App'>
                 <h1>{session.state}</h1>
                 <Router>
-                    <Navbar />
-                    <Routes>
-                        <Route path='/' element={<Landing />}></Route>
-                        <Route path='/sign-in' element={<SignIn />}></Route>
-                        <Route path='/tool' element={<SignIn />}></Route>
-                        <Route path='/projects' element={<SignIn />}></Route>
-                    </Routes>
+                    <UserContext.Provider
+                        value={{ user, setUser, authenticateUser, setSession }}
+                    >
+                        <Navbar />
+                        <Routes>
+                            <Route path='/' element={<Landing />}></Route>
+                            <Route path='/sign-in' element={<SignIn />}></Route>
+                            <Route path='/tool' element={<SignIn />}></Route>
+                            <Route
+                                path='/projects'
+                                element={<SignIn />}
+                            ></Route>
+                        </Routes>
+                    </UserContext.Provider>
                 </Router>
                 <header className='header'></header>
             </div>
@@ -62,7 +77,9 @@ function App() {
     return (
         <div className='App'>
             <Router>
-                <UserContext.Provider value={{ user, setUser }}>
+                <UserContext.Provider
+                    value={{ user, setUser, authenticateUser }}
+                >
                     <div>{user && JSON.stringify(user)}</div>
                     <NavbarSignedIn />
                     <Routes>

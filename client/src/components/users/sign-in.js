@@ -1,8 +1,10 @@
-import { useRef } from 'react';
+import { useContext, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../../contexts/UserContext';
 
 function SignIn() {
     const navigate = useNavigate();
+    const { user, authenticateUser, setSession } = useContext(UserContext);
 
     const emailInput = useRef();
     const passwordInput = useRef();
@@ -25,7 +27,8 @@ function SignIn() {
             .then((data) => {
                 console.log(data);
                 if (data.code === 101) {
-                    navigate('/');
+                    setSession({ state: 'loading' });
+                    authenticateUser();
                 }
             });
     };
@@ -34,6 +37,7 @@ function SignIn() {
         <>
             <main className='sing-in-page-container'>
                 <h1 className='hidden'>Sign In Page</h1>
+                <h1>{user && JSON.stringify(user)}</h1>
                 <form
                     onSubmit={(e) => handleSubmit(e)}
                     className='authentication-form'

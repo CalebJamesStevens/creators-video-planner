@@ -4,7 +4,6 @@ import { UserContext } from '../contexts/UserContext';
 
 function DesktopNavMenu() {
     const navigate = useNavigate();
-    //const { user, setUser } = useContext(UserContext);
 
     return (
         <section

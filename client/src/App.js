@@ -16,8 +16,6 @@ function App() {
     const authenticateUser = () => {
         console.log('authenticating');
         console.log(session.state);
-
-        if (session.state !== 'loading') return;
         fetch('/api/users/authenticate')
             .then((res) => res.json())
             .then((data) => {
@@ -59,7 +57,7 @@ function App() {
                     >
                         <Navbar />
                         <Routes>
-                            <Route path='/' element={<Landing />}></Route>
+                            <Route path='/' element={<SignIn />}></Route>
                             <Route path='/sign-in' element={<SignIn />}></Route>
                             <Route path='/tool' element={<SignIn />}></Route>
                             <Route
@@ -84,7 +82,7 @@ function App() {
                     <NavbarSignedIn />
                     <Routes>
                         <Route path='/' element={<Landing />}></Route>
-                        <Route path='/sign-in' element={<SignIn />}></Route>
+                        <Route path='/sign-in' element={<Landing />}></Route>
                         <Route path='/tool' element={<Tool />}></Route>
                         <Route path='/projects' element={<Projects />}></Route>
                     </Routes>

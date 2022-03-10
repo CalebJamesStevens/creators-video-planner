@@ -1,7 +1,10 @@
+import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../contexts/UserContext';
 
 function DesktopNavMenu() {
     const navigate = useNavigate();
+    //const { user, setUser } = useContext(UserContext);
 
     return (
         <section

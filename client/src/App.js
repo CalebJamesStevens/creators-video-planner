@@ -5,18 +5,73 @@ import Navbar from './components/navbar';
 import Landing from './components/home/landing';
 import Projects from './components/projects';
 import SignIn from './components/users/sign-in';
+import { useEffect, useState } from 'react';
+import { UserContext } from './contexts/UserContext';
+import NavbarSignedIn from './components/navbar-siged-in';
 
 function App() {
+    const [session, setSession] = useState({ state: 'loading' });
+    const [user, setUser] = useState();
+
+    useEffect(() => {
+        console.log(session.state);
+        if (session.state !== 'loading') return;
+        fetch('/api/users/authenticate')
+            .then((res) => res.json())
+            .then((data) => {
+                if (data.code === 101) {
+                    setUser(data.user);
+                    console.log(data);
+                    return setSession({ state: 'signedIn' });
+                }
+                return setSession({ state: 'signedOut' });
+            });
+    }, []);
+
+    if (!session.state) return;
+    console.log(session.state);
+    if (session.state === 'loading') {
+        return (
+            <div className='App'>
+                <Router>
+                    <Navbar />
+                </Router>
+                <header className='header'></header>
+            </div>
+        );
+    }
+
+    if (session.state === 'signedOut') {
+        return (
+            <div className='App'>
+                <h1>{session.state}</h1>
+                <Router>
+                    <Navbar />
+                    <Routes>
+                        <Route path='/' element={<Landing />}></Route>
+                        <Route path='/sign-in' element={<SignIn />}></Route>
+                        <Route path='/tool' element={<SignIn />}></Route>
+                        <Route path='/projects' element={<SignIn />}></Route>
+                    </Routes>
+                </Router>
+                <header className='header'></header>
+            </div>
+        );
+    }
+
     return (
         <div className='App'>
             <Router>
-                <Navbar />
-                <Routes>
-                    <Route path='/' element={<Landing />}></Route>
-                    <Route path='/sign-in' element={<SignIn />}></Route>
-                    <Route path='/tool' element={<Tool />}></Route>
-                    <Route path='/projects' element={<Projects />}></Route>
-                </Routes>
+                <UserContext.Provider value={{ user, setUser }}>
+                    <div>{user && JSON.stringify(user)}</div>
+                    <NavbarSignedIn />
+                    <Routes>
+                        <Route path='/' element={<Landing />}></Route>
+                        <Route path='/sign-in' element={<SignIn />}></Route>
+                        <Route path='/tool' element={<Tool />}></Route>
+                        <Route path='/projects' element={<Projects />}></Route>
+                    </Routes>
+                </UserContext.Provider>
             </Router>
             <header className='header'></header>
         </div>

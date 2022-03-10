@@ -44,14 +44,20 @@ router.post('/register', async (req, res) => {
 router.post(
     '/sign-in',
     passport.authenticate('local', {
-        successRedirect: '/',
-        failureRedirect: '/',
-    })
+        failureRedirect: '/sign-in',
+    }),
+    (req, res) => {
+        res.json({ code: 101 });
+    }
 );
 
-router.get('/current', async (req, res) => {
-    console.log(await req.user);
-    res.json({ msg: 'yoyoma' });
+router.get('/authenticate', async (req, res) => {
+    if (!req.user) return res.json({ code: 103, message: 'No user session' });
+    res.json({
+        code: 101,
+        user: await req.user,
+        message: 'User session valid',
+    });
 });
 
 export default router;

@@ -1,23 +1,41 @@
+import { useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 function SignIn() {
-    // const handleSubmit = (data) => {
-    //     const body = new FormData(data);
-    //     fetch('/api/users/sign-in', {
-    //         method: 'POST',
-    //         headers: {
-    //             Accept: 'application/json',
-    //             'Content-Type': 'application/json',
-    //         },
-    //         body: JSON.stringify(data),
-    //     });
-    // };
+    const navigate = useNavigate();
+
+    const emailInput = useRef();
+    const passwordInput = useRef();
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const body = {
+            email: emailInput.current.value,
+            password: passwordInput.current.value,
+        };
+        fetch('/api/users/sign-in', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(body),
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data);
+                if (data.code === 101) {
+                    navigate('/');
+                }
+            });
+    };
 
     return (
         <>
             <main className='sing-in-page-container'>
                 <h1 className='hidden'>Sign In Page</h1>
                 <form
-                    action='/api/users/sign-in'
-                    method='POST'
+                    onSubmit={(e) => handleSubmit(e)}
                     className='authentication-form'
                 >
                     <label
@@ -26,6 +44,7 @@ function SignIn() {
                     >
                         Email:
                         <input
+                            ref={emailInput}
                             id='authentication-email-input'
                             name='email'
                             type='email'
@@ -37,6 +56,7 @@ function SignIn() {
                     >
                         Password:
                         <input
+                            ref={passwordInput}
                             id='authentication-password-input'
                             name='password'
                             type='password'

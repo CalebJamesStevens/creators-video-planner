@@ -29,6 +29,7 @@ function SignIn() {
                 if (data.code === 101) {
                     setSession({ state: 'loading' });
                     authenticateUser();
+                    navigate('/');
                 }
             });
     };
@@ -37,7 +38,6 @@ function SignIn() {
         <>
             <main className='sing-in-page-container'>
                 <h1 className='hidden'>Sign In Page</h1>
-                <h1>{user && JSON.stringify(user)}</h1>
                 <form
                     onSubmit={(e) => handleSubmit(e)}
                     className='authentication-form'

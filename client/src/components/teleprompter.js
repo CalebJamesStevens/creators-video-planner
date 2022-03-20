@@ -3,6 +3,8 @@ import { useEffect, useRef, useState } from 'react';
 function Teleprompter({ content, visible }) {
     const [play, setPlay] = useState(false);
     const [scrollSpeed, setScrollSpeed] = useState(50);
+    const [revisedContent, setRevisedContent] = useState();
+    const teleSpeedRef = useRef();
 
     const scroller = useRef();
     const scrollerInterval = useRef();
@@ -15,7 +17,10 @@ function Teleprompter({ content, visible }) {
         const intv = () => {
             scroller.current.scrollTop += 1;
         };
-        scrollerInterval.current = await setInterval(intv, 1000 / scrollSpeed);
+        scrollerInterval.current = await setInterval(
+            intv,
+            1000 / teleSpeedRef.current.value
+        );
         console.log(scrollerInterval.current);
     };
 
@@ -31,6 +36,11 @@ function Teleprompter({ content, visible }) {
             clearInterval(scrollerInterval.current);
         };
     }, [play]);
+
+    useEffect(() => {
+        if (!visible) return;
+        setRevisedContent(Object.values(content).flat());
+    }, [visible]);
 
     if (!visible) {
         clearInterval(scrollerInterval.current);
@@ -49,18 +59,32 @@ function Teleprompter({ content, visible }) {
                     className={'teleprompter-content-container'}
                     aria-labelledby='teleprompter-body'
                 >
-                    <h2 className='hidden' cid='teleprompter-body'>
+                    <h2 className='hidden' id='teleprompter-body'>
                         Teleprompter
                     </h2>
-                    {Object.keys(content).map((key, index) => {
-                        return (
-                            <div key={index} className='teleprompter-content'>
-                                <h3 className='tp-block-heading'>{key}</h3>
-                                {content[key]}
-                            </div>
-                        );
-                    })}
+                    {revisedContent &&
+                        revisedContent.map((words, index) => {
+                            return (
+                                <div
+                                    key={index}
+                                    className='teleprompter-content'
+                                >
+                                    {words}
+                                </div>
+                            );
+                        })}
                 </section>
+                <label for='speed' className='hidden'>
+                    Teleprompter Speed
+                </label>
+                <input
+                    ref={teleSpeedRef}
+                    type='range'
+                    id='speed'
+                    name='speed'
+                    min='1'
+                    max='100'
+                />
                 <button
                     onClick={handlePlay}
                     className='teleprompter-play-button'

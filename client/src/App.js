@@ -50,14 +50,12 @@ function App() {
     if (session.state === 'signedOut') {
         return (
             <div className='App'>
-                <h1>{session.state}</h1>
                 <Router>
                     <UserContext.Provider
                         value={{ user, setUser, authenticateUser, setSession }}
                     >
                         <Navbar />
                         <Routes>
-                            <Route path='/' element={<SignIn />}></Route>
                             <Route path='/sign-in' element={<SignIn />}></Route>
                             <Route path='/tool' element={<SignIn />}></Route>
                             <Route
@@ -78,13 +76,14 @@ function App() {
                 <UserContext.Provider
                     value={{ user, setUser, authenticateUser }}
                 >
-                    <div>{user && JSON.stringify(user)}</div>
                     <NavbarSignedIn />
                     <Routes>
-                        <Route path='/' element={<Landing />}></Route>
                         <Route path='/sign-in' element={<Landing />}></Route>
-                        <Route path='/tool' element={<Tool />}></Route>
-                        <Route path='/projects' element={<Projects />}></Route>
+                        <Route
+                            path='/tool/:projectID'
+                            element={<Tool />}
+                        ></Route>
+                        <Route path='/' element={<Projects />}></Route>
                     </Routes>
                 </UserContext.Provider>
             </Router>

@@ -1,9 +1,20 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../contexts/UserContext';
 
 function DesktopNavMenu() {
     const navigate = useNavigate();
+    const [validUser, setValidUser] = useState(false);
+
+    useEffect(() => {
+        fetch('/api/users/authenticate')
+            .then((res) => res.json())
+            .then((data) => {
+                if (data.code === 101) {
+                    setValidUser(true);
+                }
+            });
+    }, []);
 
     return (
         <section
@@ -14,23 +25,19 @@ function DesktopNavMenu() {
                 Navigation Menu
             </h2>
             <div
-                onClick={() => navigate('/tool')}
-                className='clickable-1 desktop-nav-menu-item'
-            >
-                Tool
-            </div>
-            <div
-                onClick={() => navigate('/projects')}
+                onClick={() => navigate('/')}
                 className='clickable-1 desktop-nav-menu-item'
             >
                 Projects
             </div>
-            <div
-                onClick={() => navigate('/sign-in')}
-                className='clickable-1 desktop-nav-menu-item'
-            >
-                Sign In
-            </div>
+            {!validUser && (
+                <div
+                    onClick={() => navigate('/sign-in')}
+                    className='clickable-1 desktop-nav-menu-item'
+                >
+                    Sign In
+                </div>
+            )}
         </section>
     );
 }

@@ -1,6 +1,14 @@
 body {
     background-color: rgb(31, 30, 30);
     color: white;
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    padding: 0;
+
+    margin: 0;
 }
 
 .hidden {
@@ -162,11 +170,13 @@ body {
     border-bottom: 0.2rem black solid;
 }
 
-.autoscroll {
+.teleprompter-content {
+    white-space: pre-wrap;
 }
 
 /*PROJECTS PAGE*/
 .projects-page {
+    position: relative;
     padding-top: 8rem;
     display: flex;
     flex-direction: column;
@@ -214,4 +224,69 @@ body {
     padding: 1rem;
     border-radius: 10px;
     transition: 100ms;
+}
+
+.new-project-popup-container {
+    position: absolute;
+    width: 100vw;
+    top: 3rem;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.new-project-popup {
+    --size: 29rem;
+    width: var(--size);
+    height: var(--size);
+    background-color: rgb(31, 30, 30);
+    border-radius: 0.5rem;
+    border: maroon 0.5rem solid;
+}
+
+.new-project-popup-form {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.new-project-popup-heading {
+    margin-bottom: 3rem;
+    font-size: 2rem;
+}
+
+.new-project-name-input-label {
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.new-project-name-input {
+    font-size: large;
+    height: 2rem;
+    width: 75%;
+}
+
+.new-project-button-container {
+    display: flex;
+    margin-top: 3rem;
+    gap: 2rem;
+}
+
+.cancel-new-project-button {
+    color: white;
+    background-color: grey;
+    padding-block: 0.5rem;
+    padding-inline: 1rem;
+    border: none;
+}
+
+.start-new-project-button {
+    padding-block: 0.5rem;
+    padding-inline: 1rem;
+    color: white;
+    background-color: rgb(30, 132, 163);
+    border: none;
 }

@@ -1,3 +1,4 @@
 code 101 = sucess
 code 102 = waiting
 code 103 = not signed in
+code 104 = failed querey

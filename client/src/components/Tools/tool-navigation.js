@@ -8,12 +8,12 @@ function ToolNavigation({ handleChange }) {
         <>
             <nav className='tool-navigator-container'>
                 <IconContext.Provider value={{ color: 'white' }}>
-                    <div
+                    {/* <div
                         onClick={() => handleChange('sb')}
                         className='clickable-1 tool-nav-item'
                     >
                         <FaCube className='icon' />
-                    </div>
+                    </div> */}
 
                     <div
                         onClick={() => handleChange('sc')}

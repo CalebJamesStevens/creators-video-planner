@@ -41,6 +41,7 @@ function App() {
             <div className='App'>
                 <Router>
                     <Navbar />
+                    <Route path='/' element={<SignIn />}></Route>
                 </Router>
                 <header className='header'></header>
             </div>
@@ -56,6 +57,7 @@ function App() {
                     >
                         <Navbar />
                         <Routes>
+                            <Route path='/' element={<SignIn />}></Route>
                             <Route path='/sign-in' element={<SignIn />}></Route>
                             <Route path='/tool' element={<SignIn />}></Route>
                             <Route

@@ -40,8 +40,10 @@ function App() {
         return (
             <div className='App'>
                 <Router>
-                    <Navbar />
-                    <Route path='/' element={<SignIn />}></Route>
+                    <Routes>
+                        <Navbar />
+                        <Route path='/' element={<SignIn />}></Route>
+                    </Routes>
                 </Router>
                 <header className='header'></header>
             </div>

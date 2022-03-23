@@ -8,6 +8,7 @@ import SignIn from './components/users/sign-in';
 import { useEffect, useState } from 'react';
 import { UserContext } from './contexts/UserContext';
 import NavbarSignedIn from './components/navbar-siged-in';
+import SignUp from './components/users/sign-up';
 
 function App() {
     const [session, setSession] = useState({ state: 'loading' });
@@ -65,6 +66,7 @@ function App() {
                         <Routes>
                             <Route path='/' element={<SignIn />}></Route>
                             <Route path='/sign-in' element={<SignIn />}></Route>
+                            <Route path='/sign-up' element={<SignUp />}></Route>
                             <Route path='/tool' element={<SignIn />}></Route>
                             <Route
                                 path='/projects'

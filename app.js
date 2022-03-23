@@ -24,16 +24,6 @@ console.log(process.env.SESSION_SECRET);
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get('/api/tests/', async (req, res) => {
-    const names = 'name3';
-    const ret = await knex('tests').insert({ username: names }, [
-        'username',
-        'test_id',
-    ]);
-    console.log(ret);
-    res.json({ ret });
-});
-
 app.use('/api/users', users);
 app.use('/api/projects', projects);
 

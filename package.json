@@ -1,36 +1,39 @@
 {
-  "name": "creators-video-planner",
-  "version": "1.0.0",
-  "type": "module",
-  "description": "Planning tool for media creators",
-  "main": "app.js",
-  "scripts": {
-    "start": "node app",
-    "dev": "nodemon app",
-    "test": "test"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/CalebJamesStevens/creators-video-planner.git"
-  },
-  "author": "Caleb Stevens",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/CalebJamesStevens/creators-video-planner/issues"
-  },
-  "homepage": "https://github.com/CalebJamesStevens/creators-video-planner#readme",
-  "devDependencies": {
-    "nodemon": "^2.0.15"
-  },
-  "dependencies": {
-    "bcrypt": "^5.0.1",
-    "dotenv": "^16.0.0",
-    "express": "^4.17.3",
-    "express-session": "^1.17.2",
-    "knex": "^1.0.4",
-    "passport": "^0.5.2",
-    "passport-local": "^1.0.0",
-    "pg": "^8.7.3",
-    "pg-tx": "^1.0.1"
-  }
+    "name": "creators-video-planner",
+    "version": "1.0.0",
+    "type": "module",
+    "description": "Planning tool for media creators",
+    "main": "app.js",
+    "scripts": {
+        "client-install": "cd client && npm install",
+        "start": "node app.js",
+        "server": "nodemon app.js",
+        "client": "npm start --prefix client",
+        "dev": "concurrently \"npm run server\" \"npm run client\"",
+        "railway-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/CalebJamesStevens/creators-video-planner.git"
+    },
+    "author": "Caleb Stevens",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/CalebJamesStevens/creators-video-planner/issues"
+    },
+    "homepage": "https://github.com/CalebJamesStevens/creators-video-planner#readme",
+    "devDependencies": {
+        "nodemon": "^2.0.15"
+    },
+    "dependencies": {
+        "bcrypt": "^5.0.1",
+        "dotenv": "^16.0.0",
+        "express": "^4.17.3",
+        "express-session": "^1.17.2",
+        "knex": "^1.0.4",
+        "passport": "^0.5.2",
+        "passport-local": "^1.0.0",
+        "pg": "^8.7.3",
+        "pg-tx": "^1.0.1"
+    }
 }

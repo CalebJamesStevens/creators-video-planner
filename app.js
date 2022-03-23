@@ -6,6 +6,7 @@ import users from './routes/users.js';
 import session from 'express-session';
 import passport from 'passport';
 import 'dotenv/config';
+import { path } from 'express/lib/application';
 
 const app = express();
 const port = process.env.PORT || 5000;

@@ -40,10 +40,14 @@ function App() {
         return (
             <div className='App'>
                 <Router>
-                    <Routes>
+                    <UserContext.Provider
+                        value={{ user, setUser, authenticateUser, setSession }}
+                    >
                         <Navbar />
-                        <Route path='/' element={<SignIn />}></Route>
-                    </Routes>
+                        <Routes>
+                            <Route path='/' element={<SignIn />}></Route>
+                        </Routes>
+                    </UserContext.Provider>
                 </Router>
                 <header className='header'></header>
             </div>

@@ -31,12 +31,20 @@ function DesktopNavMenu() {
                 Projects
             </div>
             {!validUser && (
-                <div
-                    onClick={() => navigate('/sign-in')}
-                    className='clickable-1 desktop-nav-menu-item'
-                >
-                    Sign In
-                </div>
+                <>
+                    <div
+                        onClick={() => navigate('/sign-in')}
+                        className='clickable-1 desktop-nav-menu-item'
+                    >
+                        Sign In
+                    </div>
+                    <div
+                        onClick={() => navigate('/sign-Up')}
+                        className='clickable-1 desktop-nav-menu-item'
+                    >
+                        Sign Up
+                    </div>
+                </>
             )}
         </section>
     );

@@ -90,7 +90,9 @@ function App() {
                 >
                     <NavbarSignedIn />
                     <Routes>
-                        <Route path='/sign-in' element={<Landing />}></Route>
+                        <Route path='/sign-in' element={<Projects />}></Route>
+                        <Route path='/sign-up' element={<Projects />}></Route>
+
                         <Route
                             path='/tool/:projectID'
                             element={<Tool />}

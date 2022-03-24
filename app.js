@@ -35,10 +35,10 @@ if (process.env.NODE_ENV === 'production') {
 
     app.get('*', (req, res) => {
         console.warn(
-            path.resolve(path.dirname(), 'client', 'build', 'index.html')
+            path.resolve(path.dirname('.'), 'client', 'build', 'index.html')
         );
         res.sendFile(
-            path.resolve(path.dirname(), 'client', 'build', 'index.html')
+            path.resolve(path.dirname('.'), 'client', 'build', 'index.html')
         );
     });
 }
